@@ -1,14 +1,19 @@
-import 'package:books_projects/pages/dastur_haqida.dart';
-import 'package:books_projects/pages/dastur_rejimi.dart';
-import 'package:books_projects/pages/kitob_boblari.dart';
-import 'package:books_projects/pages/language_page.dart';
+import 'package:books_projects/model/bookResponse.dart';
+import 'package:books_projects/pages/profilga_kirish.dart';
 import 'package:books_projects/pages/video_page.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+
+import 'dastur_haqida.dart';
+import 'dastur_rejimi.dart';
+import 'kitob_boblari.dart';
+import 'language_page.dart';
 
 class BookPage extends StatefulWidget {
   static const String id = "book_page";
+  ResultItem? resultItem;
 
-  const BookPage({super.key});
+  BookPage({super.key, required this.resultItem}) : assert(resultItem != null);
 
   @override
   State<BookPage> createState() => _BookPageState();
@@ -17,6 +22,11 @@ class BookPage extends StatefulWidget {
 class _BookPageState extends State<BookPage> {
   @override
   Widget build(BuildContext context) {
+    if (widget.resultItem == null) {
+      // Handle the case where resultItem is null (e.g., show an error message)
+      return Text('Error: Book data not found');
+    }
+
     return Scaffold(
         appBar: AppBar(
           title: Container(
@@ -56,26 +66,28 @@ class _BookPageState extends State<BookPage> {
           ),
           actions: [
             IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushReplacementNamed(context, ProfilgaKirish.id);
+                },
                 icon: const Icon(
                   Icons.settings,
-                  color: Colors.black,
                   size: 30,
                 ))
           ],
           centerTitle: true,
         ),
         body: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
           child: Column(
             children: [
               Center(
                 child: Container(
                   height: 680,
                   width: 353,
-                  child: const SingleChildScrollView(
+                  child: SingleChildScrollView(
                     child: Text(
-                      "The Drawer widget has a child property where you can place all the content for the drawer. In this example, we used a ListView widget as the child widget. The ListView enables us to easily add widgets in a column layout. Furthermore, the ListView will scroll if the list is too long to fit on the screen. The header comes first in the ListView, followed by all the navigation links. For the header, we use the UserAccountsDrawerHeader widget that provides a simple layout for user profile information. We use the ListTile widget, which provides a layout that includes an icon and some text, for the navigation links. And for each ListTile, we can set the onTap property to respond to the user’s selection of a navigation link.The Drawer widget has a child property where you can place all the content for the drawer. In this example, we used a ListView widget as the child widget. The ListView enables us to easily add widgets in a column layout. Furthermore, the ListView will scroll if the list is too long to fit on the screen. The header comes first in the ListView, followed by all the navigation links. For the header, we use the UserAccountsDrawerHeader widget that provides a simple layout for user profile information. We use the ListTile widget, which provides a layout that includes an icon and some text, for the navigation links. And for each ListTile, we can set the onTap property to respond to the user’s selection of a navigation link.",
-                      style: TextStyle(fontSize: 18),
+                      widget.resultItem?.translate?.ru?.context ?? 'No title available',
+                      style: const TextStyle(fontSize: 18),
                     ),
                   ),
                 ),
@@ -94,10 +106,14 @@ class _BookPageState extends State<BookPage> {
                             color: Colors.orange,
                             size: 30,
                           )),
-                      const Text(
-                        "Foydali Apk nuqtalar kitobi haqida\n1-bob / 24",
-                        style: TextStyle(fontSize: 16),
-                      ),
+                       Expanded(
+                         child: Text(
+                           widget.resultItem?.translate?.ru?.title ?? 'No title available',
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(fontSize: 16),
+                                               ),
+                       ),
                       const SizedBox(
                         width: 20,
                       ),
@@ -189,9 +205,9 @@ class _BookPageState extends State<BookPage> {
                               const SizedBox(
                                 width: 8,
                               ),
-                              const Text(
-                                "Profilga kirish",
-                                style: TextStyle(
+                               Text(
+                                "Profilga kirish".tr(),
+                                style: const TextStyle(
                                     fontSize: 16, color: Colors.white),
                               )
                             ],
@@ -204,7 +220,9 @@ class _BookPageState extends State<BookPage> {
                 height: 10,
               ),
               GestureDetector(
-                onTap: (){Navigator.pushReplacementNamed(context, DasturRejimi.id);},
+                onTap: () {
+                  Navigator.pushReplacementNamed(context, DasturRejimi.id);
+                },
                 child: Container(
                   height: 54,
                   width: 320,
@@ -229,10 +247,10 @@ class _BookPageState extends State<BookPage> {
                       const SizedBox(
                         width: 20,
                       ),
-                      const Text(
-                        "Dastur rejimi",
-                        style:
-                        TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                       Text(
+                        "Dastur rejimi".tr(),
+                        style: const TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.bold),
                       )
                     ],
                   ),
@@ -245,7 +263,9 @@ class _BookPageState extends State<BookPage> {
                 ),
               ),
               GestureDetector(
-                onTap: (){Navigator.pushReplacementNamed(context, LanguagePage.id);},
+                onTap: () {
+                  Navigator.pushReplacementNamed(context, LanguagePage.id);
+                },
                 child: Container(
                   height: 54,
                   width: 320,
@@ -270,10 +290,10 @@ class _BookPageState extends State<BookPage> {
                       const SizedBox(
                         width: 20,
                       ),
-                      const Text(
-                        "Dastur tili",
-                        style:
-                            TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                       Text(
+                        "Dastur tili".tr(),
+                        style: const TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.bold),
                       )
                     ],
                   ),
@@ -284,7 +304,9 @@ class _BookPageState extends State<BookPage> {
                 color: Colors.grey.shade200,
               ),
               GestureDetector(
-                onTap: (){Navigator.pushReplacementNamed(context, DasturHaqida.id);},
+                onTap: () {
+                  Navigator.pushReplacementNamed(context, DasturHaqida.id);
+                },
                 child: Container(
                   height: 54,
                   width: 320,
@@ -309,10 +331,10 @@ class _BookPageState extends State<BookPage> {
                       const SizedBox(
                         width: 20,
                       ),
-                      const Text(
-                        "Dastur haqida",
-                        style:
-                            TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                       Text(
+                        "Dastur haqida".tr(),
+                        style: const TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.bold),
                       )
                     ],
                   ),
@@ -323,7 +345,9 @@ class _BookPageState extends State<BookPage> {
                 color: Colors.grey.shade200,
               ),
               GestureDetector(
-                onTap: (){Navigator.pushReplacementNamed(context, VideoPage.id);},
+                onTap: () {
+                  Navigator.pushReplacementNamed(context, VideoPage.id);
+                },
                 child: Container(
                   height: 54,
                   width: 320,
@@ -348,10 +372,10 @@ class _BookPageState extends State<BookPage> {
                       const SizedBox(
                         width: 20,
                       ),
-                      const Text(
-                        "Video qo'llanma",
-                        style:
-                            TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                       Text(
+                        "Video qo'llanma".tr(),
+                        style: const TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.bold),
                       )
                     ],
                   ),

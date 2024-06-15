@@ -1,4 +1,5 @@
 import 'package:books_projects/pages/kod_page.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 class YangiParolPage extends StatefulWidget {
   static const String id="yangi_parol_page";
@@ -57,14 +58,14 @@ class _YangiParolPageState extends State<YangiParolPage> {
               height: 4,
             ),
             Container(
-                child: const Column(
+                child:  Column(
                   children: [
                     Text(
-                      "Elektron pochtangizni kiriting va biz unga parolni",
+                      "Elektron pochtangizni kiriting va biz unga parolni".tr(),
                       style: TextStyle(fontSize: 16, color: Colors.grey),
                     ),
                     Text(
-                      "Tiklash uchun kod yuboramiz",
+                      "Tiklash uchun kod yuboramiz".tr(),
                       style: TextStyle(fontSize: 16, color: Colors.grey),
                     ),
                   ],
@@ -76,13 +77,13 @@ class _YangiParolPageState extends State<YangiParolPage> {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(4),
                   border: Border.all(width: 1),
-                  color: Colors.white),
-              child: const Padding(
+               ),
+              child:  Padding(
                 padding: EdgeInsets.only(top: 8, left: 15),
                 child: TextField(
                   decoration: InputDecoration(
                       border: InputBorder.none,
-                      hintText: "Yangi parol"),
+                      hintText: "Yangi parol".tr()),
                 ),
               ),
             ),
@@ -93,13 +94,13 @@ class _YangiParolPageState extends State<YangiParolPage> {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(4),
                   border: Border.all(width: 1),
-                  color: Colors.white),
-              child: const Padding(
+               ),
+              child:  Padding(
                 padding: EdgeInsets.only(top: 8, left: 15),
                 child: TextField(
                   decoration: InputDecoration(
                       border: InputBorder.none,
-                      hintText: "Yangi parolni qaytadan kiriting"),
+                      hintText: "Yangi parolni qaytadan kiriting".tr()),
                 ),
               ),
             ),

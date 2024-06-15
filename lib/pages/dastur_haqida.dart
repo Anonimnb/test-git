@@ -1,3 +1,6 @@
+import 'package:books_projects/pages/kitob_boblari.dart';
+import 'package:books_projects/pages/video_page.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import 'book_page.dart';
@@ -16,14 +19,14 @@ class _DasturHaqidaState extends State<DasturHaqida> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          "Dastur haqida",
+        title:  Text(
+          "Dastur haqida".tr(),
           style: TextStyle(fontSize: 20),
         ),
         centerTitle: true,
         leading: IconButton(
           onPressed: () {
-            Navigator.pushReplacementNamed(context, BookPage.id);
+            Navigator.pushReplacementNamed(context, KitobBoblari.id);
           },
           icon: const Icon(Icons.arrow_back),
         ),

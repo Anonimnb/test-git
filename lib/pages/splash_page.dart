@@ -11,7 +11,7 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> {
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 5), () {
+    Future.delayed(const Duration(seconds: 2), () {
       Navigator.pushReplacementNamed(context, LanguagePage.id);
     });
   }

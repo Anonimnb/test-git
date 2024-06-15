@@ -44,6 +44,12 @@
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
+	<array>
+    	<string>en</string>
+    	<string>uz</string>
+    	<string>ru</string>
+    	<string>fr</string>
+    </array>
 	<true/>
 </dict>
 </plist>
