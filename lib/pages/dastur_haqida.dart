@@ -1,5 +1,4 @@
 import 'package:books_projects/pages/kitob_boblari.dart';
-import 'package:books_projects/pages/video_page.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -21,7 +20,7 @@ class _DasturHaqidaState extends State<DasturHaqida> {
       appBar: AppBar(
         title:  Text(
           "Dastur haqida".tr(),
-          style: TextStyle(fontSize: 20),
+          style: const TextStyle(fontSize: 20),
         ),
         centerTitle: true,
         leading: IconButton(
