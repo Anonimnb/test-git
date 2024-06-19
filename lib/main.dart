@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:books_projects/pages/book_page.dart';
 import 'package:books_projects/pages/dastur_haqida.dart';
 import 'package:books_projects/pages/dastur_rejimi.dart';
 import 'package:books_projects/pages/kitob_boblari.dart';

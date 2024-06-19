@@ -154,7 +154,6 @@ class _SingUpPageState extends State<SingUpPage> {
                         padding: const EdgeInsets.only(top: 8, left: 15),
                         child: TextField(
                           controller: _fullNameController,
-                          // Full name controller
                           decoration: InputDecoration(
                             border: InputBorder.none,
                             hintText: "Ismingiz".tr(),
